@@ -16,7 +16,7 @@ type Response struct {
 	StatusMessage  int    `json:"status_code"`
 }
 
-func infoHandler(w http.ResponseWriter, r *http.Request) {
+func endPointInfo(w http.ResponseWriter, r *http.Request) {
 	// Parse query parameters
 	slack := r.URL.Query().Get("slack_name")
 	track := r.URL.Query().Get("track")
@@ -42,7 +42,7 @@ func infoHandler(w http.ResponseWriter, r *http.Request) {
 	response := Response{
 		Slack:          slack,
 		DayOfWeek:      dayOfWeek,
-		CurrentUTCTime: currentTime.Format("2006-01-02 15:04:05"),
+		CurrentUTCTime: currentTime.Format("2006-01-02T15:04:05Z"),
 		Track:          track,
 		Github_file_url: "https://github.com/Ezrahel/Go_API/blob/main/GoEndpoint.go",
 		Github_repo_url: "https://github.com/Ezrahel/Go_API",
@@ -73,7 +73,7 @@ func nigeriaTime() time.Time {
 }
 
 func main() {
-	http.HandleFunc("/info", infoHandler)
+	http.HandleFunc("/api", endPointInfo)
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
