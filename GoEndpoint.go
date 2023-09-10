@@ -42,7 +42,7 @@ func endPointInfo(w http.ResponseWriter, r *http.Request) {
 	response := Response{
 		Slack:          slack,
 		DayOfWeek:      dayOfWeek,
-		CurrentUTCTime: currentTime.Format("2006-01-02T15:04:05Z"),
+		CurrentUTCTime: currentTime.UTC().Format("2006-01-02T15:04:05Z"),
 		Track:          track,
 		Github_file_url: "https://github.com/Ezrahel/Go_API/blob/main/GoEndpoint.go",
 		Github_repo_url: "https://github.com/Ezrahel/Go_API",
